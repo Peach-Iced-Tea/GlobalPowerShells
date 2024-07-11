@@ -1,8 +1,9 @@
 param (
     [string]$ip
+    [string]$port
 )
 
-$port = 12345
+Write-Host "Attempting connection to $ip at $port"
 
 $client = New-Object System.Net.Sockets.TcpClient($ip, $port)
 $stream = $client.GetStream()
