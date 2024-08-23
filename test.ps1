@@ -10,7 +10,7 @@ Write-Output "IP: $IP"
 Write-Output "Variable: $var1"
 
 $msg = @{
-    content = "Script has been run from $Env:ComputerName at IP $IP."
+    content = "Script has been run on $Env:ComputerName with IP $IP at $(Get-Date -Format "MM/dd - HH:mm:ss")."
 } | ConvertTo-Json
 
 Invoke-WebRequest -Uri $URL -Method Post -Body $msg -ContentType "application/json" | Out-Null
