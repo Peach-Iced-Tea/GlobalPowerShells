@@ -13,4 +13,4 @@ $msg = @{
     content = "Script has been run from $Env:ComputerName at IP $IP."
 } | ConvertTo-Json
 
-Invoke-WebRequest -Uri $URL -Method Post -Body $msg -ContentType "application/json"
+Invoke-WebRequest -Uri $URL -Method Post -Body $msg -ContentType "application/json" | Out-Null
