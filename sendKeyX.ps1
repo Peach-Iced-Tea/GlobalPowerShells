@@ -1,3 +1,4 @@
-Add-Type -AssemblyName System.Windows.Forms
-
-[System.Windows.Forms.SendKeys]::SendWait("^{c}")
+$wshell = New-Object -ComObject wscript.shell;
+$wshell.AppActivate('WebBrowserPassView')
+Sleep 2
+$wshell.SendKeys("^{a}")
