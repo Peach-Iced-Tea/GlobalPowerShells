@@ -38,7 +38,7 @@ if ($discordMessage.Length -gt 2000) {
 }
 
 $msg = @{
-    content = $PassContent
+    content = $discordMessage
 } | ConvertTo-Json
 
 try {
