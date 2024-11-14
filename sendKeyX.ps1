@@ -1,7 +1,7 @@
 $wshell = New-Object -ComObject wscript.shell;
 $wshell.AppActivate('WebBrowserPassView')
-Sleep 1
+Sleep 5
 $wshell.SendKeys("^{a}")
-Sleep 1
+Sleep 5
 $wshell.SendKeys("^{s}")
-Sleep 2
+Sleep 1
