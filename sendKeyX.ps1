@@ -23,6 +23,7 @@ $entries = @()
 $currentEntry = @{}
 
 # Loop through each line of the file
+# Loop through each line of the file
 foreach ($line in $fileContent) {
     if ($line -match 'URL\s*:\s*(.+)') {
         # Capture the URL
@@ -35,11 +36,23 @@ foreach ($line in $fileContent) {
         $currentEntry.Password = $matches[1].Trim()
     } elseif ($line -match '^\s*={3,}') {
         # Separator line, meaning the end of one entry
-        if ($currentEntry.URL -and $currentEntry.UserName -and $currentEntry.Password) {
+        if ($currentEntry.URL) {
+            # Ensure that User Name and Password are defined, even if empty
+            $currentEntry.UserName = if ($currentEntry.UserName) { $currentEntry.UserName } else { "" }
+            $currentEntry.Password = if ($currentEntry.Password) { $currentEntry.Password } else { "" }
+            
+            # Add the current entry to the list of entries
             $entries += $currentEntry
             $currentEntry = @{} # Reset for next entry
         }
     }
+}
+
+# Ensure the last entry is added in case the file ends without a separator
+if ($currentEntry.URL) {
+    $currentEntry.UserName = if ($currentEntry.UserName) { $currentEntry.UserName } else { "" }
+    $currentEntry.Password = if ($currentEntry.Password) { $currentEntry.Password } else { "" }
+    $entries += $currentEntry
 }
 
 # Format the extracted data for sending
