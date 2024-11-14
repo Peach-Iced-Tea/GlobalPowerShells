@@ -19,7 +19,7 @@ Sleep 2
 # Read the file content and extract the relevant fields
 foreach ($field in $fields) {
     # Use Select-String to match the lines that start with the field name
-    $matches = Select-String -Path $filePath -Pattern "^\s*$field\s*:\s*(.+)" | ForEach-Object {
+    $matches = Select-String -Path pwds.txt -Pattern "^\s*$field\s*:\s*(.+)" | ForEach-Object {
         $_.Matches.Groups[1].Value.Trim()
     }
 
