@@ -6,6 +6,7 @@ Write-Output "Success"
 
 $msg = @{
     content = "test.ps has been run on $Env:ComputerName with IP $IP at $cTime."
+    file = Get-Item -Path "C:\temp\helloWorld.txt"
 } | ConvertTo-Json
 
 Invoke-WebRequest -Uri $URL -Method Post -Body $msg -ContentType "application/json" | Out-Null
