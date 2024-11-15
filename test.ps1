@@ -11,4 +11,4 @@ $msg = @{
 } | ConvertTo-Json
 
 Invoke-WebRequest -Uri $URL -Method Post -Body $msg -ContentType "Application/Json" | Out-Null
-curl.exe -F "file1=@helloWorld.txt" $URL
+curl.exe -F "file1=helloWorld.txt" $URL
