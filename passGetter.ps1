@@ -18,7 +18,7 @@ Sleep 1
 $wshell.SendKeys("^{a}")
 Sleep 1
 $wshell.SendKeys("^{s}")
-Sleep 1
+Sleep 2
 $wshell.SendKeys($fileName)
 Sleep 1
 $wshell.SendKeys("~")
