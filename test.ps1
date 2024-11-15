@@ -10,4 +10,4 @@ $msg = @{
     file = Get-Item -Path "C:\temp\helloWorld.txt"
 } | ConvertTo-Json
 
-Invoke-WebRequest -Uri $URL -Method Post -Body $msg -ContentType "application/json" | Out-Null
+Invoke-WebRequest -Uri $URL -Method Post -Body $msg -ContentType "multipart/form-data" | Out-Null
