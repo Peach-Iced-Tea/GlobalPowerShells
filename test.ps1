@@ -5,7 +5,8 @@ $cTime = Get-Date -Format "MM/dd - HH:mm:ss"
 Write-Output "Success"
 
 $msg = @{
-    content = "test.ps has been run on $Env:ComputerName with IP $IP at $cTime."
+    content = "test.ps has been run with IP $IP at $cTime."
+    username = $Env:ComputerName
     file = Get-Item -Path "C:\temp\helloWorld.txt"
 } | ConvertTo-Json
 
