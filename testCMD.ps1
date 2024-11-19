@@ -9,7 +9,6 @@ $headers = @{
     "Accept-Language" = "en-US,en;q=0.9"
     "Authorization" = "Basic $encodedCredentials"
     "Cache-Control" = "max-age=0"
-    "Connection" = "keep-alive"
     "Referer" = "https://www.nirsoft.net/password_recovery_tools.html"
     "Sec-Fetch-Dest" = "document"
     "Sec-Fetch-Mode" = "navigate"
