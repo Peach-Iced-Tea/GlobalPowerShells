@@ -1,4 +1,6 @@
-$URL = "Redacted"
+param (
+    [string]$URL
+)
 $fileName = "pwds.txt"
 $filePath = "C:\temp\" + $fileName
 $wshell = New-Object -ComObject wscript.shell
